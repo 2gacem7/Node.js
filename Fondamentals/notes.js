@@ -1,8 +1,5 @@
 const fs = require('fs')
-
-/* const getNotes = () => {
-    return 'Je recherche un poste de développeur web fullstack';
-} */
+const chalk = require('chalk')
 
 const addNotes = (title, body) => {
     const notes = loadNotes()
@@ -20,18 +17,27 @@ const addNotes = (title, body) => {
         console.log('Note tittle taken!');
     }
 
-    
-
     console.log(notes);
 }
 
-// ON VA ENREGISTRER LES ELEMENTS DANS LE FILE JSON D'ABORD NOUS ALLONS RENDRE LA DATA NOTES EN JSON AVANT D ECRIRE A L INTERIEUR
+const removeNote = (title) => {
+    const notes = loadNotes();
+    const notesToPick = notes.filter((note)=> {
+        return note.title !== title
+    })
+    if (notes.length > notesToPick.length){
+        console.log(chalk.green.inverse('The title (' + title +') has been removed'));
+        saveNotes(notesToPick)
+    } else {
+        console.log(chalk.red.inverse('The tittle ('+ title +') is not found'));
+    }
+}
+
 const saveNotes = (notes) => {
     const dataJSON = JSON.stringify(notes)
     fs.writeFileSync('notes.json', dataJSON)
 }
 
-// LOADNOTES VA NOUS SERVIR A LIRE DANS LE FILE JSON PUIS DE RENDRE LE JSON EN OBJET
 const loadNotes = () => {
     try {
         const dataBuffer = fs.readFileSync('notes.json')
@@ -45,6 +51,7 @@ const loadNotes = () => {
 
 module.exports = {
     //getNotes: getNotes,
-    addNotes: addNotes
+    addNotes: addNotes,
+    removeNote:removeNote
 }
 
