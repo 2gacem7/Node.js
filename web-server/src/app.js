@@ -42,10 +42,19 @@ app.get('/help', (req, res) => {
     })
 })
 
-app.get('/weather', (req, res) => {
-    res.send({
-        forecast : 32,
-        location : 'Paris'
+
+/* app.get('/help/*', (req, res) => {
+  res.render('404', {
+    title : '404',
+    errorMessage : 'Help article not found.'
+  })
+}) */
+
+app.get('*', (req, res)=> {
+    res.render('404', {
+        title : '404',
+        errorMessage : 'Page not found',
+        name : 'Gacem'
     })
 })
 
