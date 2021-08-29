@@ -12,6 +12,19 @@ body {
 .main-content{
     flex-grow: 1;
 }
+input {
+    border: 1px solid #cccccc;
+    padding: 8px;
+}
+
+button {
+    cursor: pointer;
+    border: 1 px #888888;
+    background: #888888;
+    color: white;
+    padding: 8px;
+}
+
 
 footer {
     background: #eeeeee;
