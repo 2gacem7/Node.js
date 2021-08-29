@@ -50,7 +50,7 @@ app.get('/weather', (req, res) => {
             error : 'You must provide an adress'
         })
     }
-    geocode(req.query.adress, (error, { latitude, longitude, location}) => {
+    geocode(req.query.adress, (error, { latitude, longitude, location } = {}) => {
         if(error) {
             return res.send({ error })
         } 
