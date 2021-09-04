@@ -11,9 +11,16 @@ router.post('/users', (req, res) => {
         res.status(201).send(user)
     }).catch((e) => {
         res.status(400).send(e)
-        res.send(e)
     })
 });
+
+router.get('/users', (req, res) => {
+    User.find({}).then((users)=> {
+        res.send(users)
+    }).catch((e)=>{
+        res.status(500).send()
+    })
+})
 
 router.get('/users/:id', (req, res)=> {
     const _id = req.params.id
@@ -21,17 +28,8 @@ router.get('/users/:id', (req, res)=> {
         if(!user){
             return res.status(404).send()
         }
-
         res.send(user)
     }).catch((e)=> {
-        res.status(500).send()
-    })
-})
-
-router.get('/users', (req, res) => {
-    User.find({}).then((users)=> {
-        res.send(users)
-    }).catch((e)=>{
         res.status(500).send()
     })
 })
