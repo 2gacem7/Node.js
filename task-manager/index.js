@@ -7,7 +7,7 @@ const userRoute = require('./src/router/user');
 const taskRoute = require('./src/router/task')
 
 app.get('/', (req, res) => {
-  res.send('is connected...')
+    res.send('is connected...')
 })
 
 db();
@@ -16,5 +16,18 @@ app.use(cors());
 app.use(userRoute, taskRoute);
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`Example app listening at http://localhost:${port}`)
 })
+
+
+const jwt = require('jsonwebtoken')
+
+const myFunction = async () => {
+    const token = jwt.sign({ _id: 'abc123' }, 'thisismynewcourse')
+    console.log(token)
+
+    const data = jwt.verify(token, 'thisismynewcourse')
+    console.log(data)
+}
+
+myFunction()
