@@ -18,9 +18,6 @@ db.sequelize.sync({ force: true }).then(() => {
   console.log("Drop and re-sync db.");
 });
 
-/* app.get("/", (_req: any, res: any) => {
-  res.json({ message: "Welcome to bezkoder application." });
-}); */
 require("./app/routes/user.routes")(app);
 
 const PORT: number = parseInt(process.env.PORT as string, 10);
