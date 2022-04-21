@@ -1,7 +1,7 @@
 const db = require("../models");
 const User = db.users;
 const Op = db.Sequelize.Op;
-// Create and Save a new Tutorial
+// Create and Save a new User
 exports.create = (req: any, res: any) => {
   if (!req.body.firstName) {
     res.status(400).send({
